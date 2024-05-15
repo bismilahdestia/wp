@@ -61,11 +61,30 @@ func extractAccountID(url string) (string, error) {
 
 func main() {
 	// Token Bearer untuk autentikasi
-	token := "YOUR_ACCESS_TOKEN" // Gantilah dengan token akses yang benar
+	token := "MK-wSj12+UJt2K08rMSoIyx/oDnETFs1pEQ+OxJt3NSeAwCdiFPZ46vFzb6eEtr7zSSaKVbgGX9X5Cxm78ivCwryw==" // Gantilah dengan token akses yang benar
 
 	// Daftar URL Warpcast yang akan di-like
 	urlList := []string{
-		"https://warpcast.com/account1",
+		"
+"https://warpcast.com/zeroyogi/0xa4d4dd29
+
+"https://warpcast.com/samyangmercon/0xb52b63ab
+
+"https://warpcast.com/rizkiiaprmn/0x25c61213
+
+"https://warpcast.com/zeeejkt48/0xf25a870b
+
+"https://warpcast.com/arastra/0x1d1f6a80
+
+"https://warpcast.com/tjakrahardja/0xa57e6e8e
+
+"https://warpcast.com/masdim/0x62314d67
+
+"https://warpcast.com/tempek123/0x5863e48b
+
+"https://warpcast.com/mprutz/0xed265b42
+
+"https://warpcast.com/mrwanjrwow/0x0a46b3cf",
 		"https://warpcast.com/account2",
 		"https://warpcast.com/account3",
 	}
