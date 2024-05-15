@@ -1,11 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 )
@@ -60,37 +62,28 @@ func extractAccountID(url string) (string, error) {
 }
 
 func main() {
-	// Token Bearer untuk autentikasi
-	token := "MK-wSj12+UJt2K08rMSoIyx/oDnETFs1pEQ+OxJt3NSeAwCdiFPZ46vFzb6eEtr7zSSaKVbgGX9X5Cxm78ivCwryw==" // Gantilah dengan token akses yang benar
+	// Membuat pembaca untuk input pengguna
+	reader := bufio.NewReader(os.Stdin)
 
-	// Daftar URL Warpcast yang akan di-like
-	urlList := []string{
-		"
-"https://warpcast.com/zeroyogi/0xa4d4dd29
-
-"https://warpcast.com/samyangmercon/0xb52b63ab
-
-"https://warpcast.com/rizkiiaprmn/0x25c61213
-
-"https://warpcast.com/zeeejkt48/0xf25a870b
-
-"https://warpcast.com/arastra/0x1d1f6a80
-
-"https://warpcast.com/tjakrahardja/0xa57e6e8e
-
-"https://warpcast.com/masdim/0x62314d67
-
-"https://warpcast.com/tempek123/0x5863e48b
-
-"https://warpcast.com/mprutz/0xed265b42
-
-"https://warpcast.com/mrwanjrwow/0x0a46b3cf",
-		"https://warpcast.com/account2",
-		"https://warpcast.com/account3",
+	// Meminta pengguna memasukkan token otorisasi
+	fmt.Print("Masukkan token otorisasi: ")
+	token, err := reader.ReadString('\n')
+	if err != nil {
+		log.Fatalf("Gagal membaca token: %v", err)
 	}
+	token = strings.TrimSpace(token)
+
+	// Meminta pengguna memasukkan daftar URL profil Warpcast yang akan di-like
+	fmt.Print("Masukkan URL profil Warpcast (pisahkan dengan spasi): ")
+	urlsInput, err := reader.ReadString('\n')
+	if err != nil {
+		log.Fatalf("Gagal membaca URL: %v", err)
+	}
+	urlList := strings.Fields(strings.TrimSpace(urlsInput))
 
 	// Melakukan like untuk setiap URL dalam daftar
 	for _, url := range urlList {
+		url = strings.TrimSpace(url)
 		accountID, err := extractAccountID(url)
 		if err != nil {
 			log.Printf("Gagal mengekstrak AccountID dari URL %s: %v\n", url, err)
